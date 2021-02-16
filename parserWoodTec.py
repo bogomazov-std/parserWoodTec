@@ -140,17 +140,17 @@ def pullColumnXl(ws):
 def writeXl(allProduct):
     wb = Workbook()
     wb.active.title = 'info'
+    redFill = PatternFill(start_color='FFB1FF',
+                            end_color='FFB1FF',
+                            fill_type='solid')
+    blueFill = PatternFill(start_color='9FC5E8',
+                             end_color='9FC5E8',
+                             fill_type='solid')
     for i in allProduct:
         ws = wb.create_sheet(i['title'].replace('Фрезерно-гравировальные', 'ФГ'))
         if i['addition']:
             for product in i['addition']:
                 ws.append([product['title']])
-                redFill = PatternFill(start_color='FFB1FF',
-                                      end_color='FFB1FF',
-                                      fill_type='solid')
-                blueFill = PatternFill(start_color='9FC5E8',
-                                      end_color='9FC5E8',
-                                      fill_type='solid')
                 ws['A{}'.format(ws.max_row)].fill = redFill
                 ws.append(['Наименование', 'Цена в долларах', 'Цена в рублях', 'Закупочная'])
                 for col in 'ABCD':
